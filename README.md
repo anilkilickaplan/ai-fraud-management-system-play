@@ -57,6 +57,30 @@ The interactive **control center** lives in a dedicated repository:
 
 Use it to showcase the full product story: UI + data + this backend as the scoring and integration layer.
 
+### Dashboard screenshots
+
+*From the companion [ai-fraud-control-center](https://github.com/anilkilickaplan/ai-fraud-control-center) UI (Lovable + Supabase). PNGs live in [`docs/screenshots/`](docs/screenshots/) — see [`docs/screenshots/README.md`](docs/screenshots/README.md) if images need to be added locally before they render on GitHub.*
+
+**Overview — real-time monitoring**
+
+![AI Fraud Control Center — overview](docs/screenshots/main-dashboard.png)
+
+**Transaction queue — risk scores and manual actions**
+
+![Transaction queue with risk scores and Fraud / Legit actions](docs/screenshots/transactions.png)
+
+**Decision simulator — threshold vs. blocked volume and saved revenue**
+
+![Decision simulator — threshold and impact metrics](docs/screenshots/decision-simulator.png)
+
+**Business analytics — model KPIs and conversion impact**
+
+![Business analytics — precision, recall, F1, conversion donut](docs/screenshots/business-analytics.png)
+
+**Financial impact — chargeback cost, saved revenue, net benefit**
+
+![Financial impact — ROI and operational cost](docs/screenshots/financial-impact.png)
+
 ---
 
 ## Local development
