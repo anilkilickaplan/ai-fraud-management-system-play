@@ -1,18 +1,14 @@
 # AI Fraud Management System
 
-**Backend API for ML-driven fraud detection in shadow mode** — Random Forest scoring, Stripe webhooks, structured logging, and optional Supabase integration. Pairs with a separate [dashboard](https://github.com/anilkilickaplan/ai-fraud-control-center) (Lovable + Supabase) for analyst workflows and labeling.
-
----
+**Backend API for ML-driven fraud detection in shadow mode.** Random Forest scoring, Stripe webhooks, structured logging, and optional Supabase integration. Pairs with a separate [dashboard](https://github.com/anilkilickaplan/ai-fraud-control-center) (Lovable + Supabase) for analyst workflows and labeling.
 
 ## Overview
 
 This project demonstrates how a **rule-based fraud stack** can evolve into a **machine-learning decision engine** without forcing a risky big-bang cutover. The API scores transactions and records outcomes in **shadow mode** (observe and learn before committing to automated blocks), so product and risk teams can measure impact before changing customer-facing behavior.
 
----
-
 ## The problem
 
-Fraud systems sit at the intersection of **revenue**, **customer trust**, and **operations**. Decisions are rarely “correct vs. wrong” — they are trade-offs:
+Fraud systems sit at the intersection of **revenue**, **customer trust**, and **operations**. Decisions are rarely “correct vs. wrong”; they are trade-offs:
 
 | Trade-off | What it means |
 |-----------|----------------|
@@ -22,32 +18,24 @@ Fraud systems sit at the intersection of **revenue**, **customer trust**, and **
 
 The product framing is explicit: **optimize economic outcomes**, not model accuracy in isolation.
 
----
-
 ## Product approach
 
-- **Shadow mode first** — Score and log predictions alongside existing rules; compare outcomes without changing authorization in production until stakeholders are confident.
-- **Stripe-native hooks** — Webhooks align scoring with real payment events so the pipeline reflects how money actually moves.
-- **Analyst-in-the-loop** — A labeling path (via the dashboard + Supabase) turns human decisions into **ground truth** for model improvement rather than one-off overrides.
-
----
+- **Shadow mode first:** score and log predictions alongside existing rules; compare outcomes without changing authorization in production until stakeholders are confident.
+- **Stripe-native hooks:** webhooks align scoring with real payment events so the pipeline reflects how money actually moves.
+- **Analyst-in-the-loop:** a labeling path (via the dashboard + Supabase) turns human decisions into **ground truth** for model improvement rather than one-off overrides.
 
 ## Architecture & tech stack
 
 | Layer | Role |
 |-------|------|
 | **ML** | Scikit-learn **Random Forest** trained on historical transaction-style data. |
-| **API** | **FastAPI** (Python) — webhooks, health checks, shadow logging. |
-| **Data** | **Supabase (PostgreSQL)** — persistence and labeling where integrated. |
-| **UI** | **Lovable** (React / Vite) — financial impact views and human-in-the-loop flows — [source: `ai-fraud-control-center`](https://github.com/anilkilickaplan/ai-fraud-control-center). |
-
----
+| **API** | **FastAPI** (Python): webhooks, health checks, shadow logging. |
+| **Data** | **Supabase (PostgreSQL):** persistence and labeling where integrated. |
+| **UI** | **Lovable** (React / Vite): financial impact views and human-in-the-loop flows. Source: [`ai-fraud-control-center`](https://github.com/anilkilickaplan/ai-fraud-control-center). |
 
 ## Human-in-the-loop & continuous improvement
 
-When an analyst **confirms or rejects** a suspicious transaction in the dashboard, **`actual_label`** is updated in Supabase. A periodic **retrain** job (e.g. weekly) can consume those labels to **reduce drift** and adapt to new fraud patterns — closing the loop between operations and the model.
-
----
+When an analyst **confirms or rejects** a suspicious transaction in the dashboard, **`actual_label`** is updated in Supabase. A periodic **retrain** job (e.g. weekly) can consume those labels to **reduce drift** and adapt to new fraud patterns, closing the loop between operations and the model.
 
 ## Dashboard (frontend)
 
@@ -59,29 +47,27 @@ Use it to showcase the full product story: UI + data + this backend as the scori
 
 ### Dashboard screenshots
 
-*From the companion [ai-fraud-control-center](https://github.com/anilkilickaplan/ai-fraud-control-center) UI (Lovable + Supabase). PNGs live in [`docs/screenshots/`](docs/screenshots/) — see [`docs/screenshots/README.md`](docs/screenshots/README.md) if images need to be added locally before they render on GitHub.*
+*Screenshots from the companion [ai-fraud-control-center](https://github.com/anilkilickaplan/ai-fraud-control-center) UI (Lovable + Supabase). Files are in [`docs/screenshots/`](docs/screenshots/).*
 
-**Overview — real-time monitoring**
+**Overview (real-time monitoring)**
 
-![AI Fraud Control Center — overview](docs/screenshots/main-dashboard.png)
+![AI Fraud Control Center overview](docs/screenshots/main-dashboard.png)
 
-**Transaction queue — risk scores and manual actions**
+**Transaction queue (risk scores and manual actions)**
 
 ![Transaction queue with risk scores and Fraud / Legit actions](docs/screenshots/transactions.png)
 
-**Decision simulator — threshold vs. blocked volume and saved revenue**
+**Decision simulator (threshold vs. blocked volume and saved revenue)**
 
-![Decision simulator — threshold and impact metrics](docs/screenshots/decision-simulator.png)
+![Decision simulator: threshold and impact metrics](docs/screenshots/decision-simulator.png)
 
-**Business analytics — model KPIs and conversion impact**
+**Business analytics (model KPIs and conversion impact)**
 
-![Business analytics — precision, recall, F1, conversion donut](docs/screenshots/business-analytics.png)
+![Business analytics: precision, recall, F1, conversion donut](docs/screenshots/business-analytics.png)
 
-**Financial impact — chargeback cost, saved revenue, net benefit**
+**Financial impact (chargeback cost, saved revenue, net benefit)**
 
-![Financial impact — ROI and operational cost](docs/screenshots/financial-impact.png)
-
----
+![Financial impact: ROI and operational cost](docs/screenshots/financial-impact.png)
 
 ## Local development
 
@@ -99,8 +85,6 @@ uvicorn app.main:app --reload
 ```bash
 python test_model.py
 ```
-
----
 
 ## First-time Git push (optional)
 
